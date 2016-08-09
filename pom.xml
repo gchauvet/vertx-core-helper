@@ -33,9 +33,9 @@
             <version>0.9.10</version>
         </dependency>
         <dependency>
-            <groupId>io.zatarox.vertx</groupId>
-            <artifactId>async</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <groupId>io.zatarox</groupId>
+            <artifactId>vertx-async</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <properties>

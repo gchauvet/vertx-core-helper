@@ -18,8 +18,9 @@ package io.zatarox.vertx.core.helpers;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
-import io.zatarox.vertx.async.Async;
-import io.zatarox.vertx.async.AsyncResultHandlerWrapper;
+import io.zatarox.vertx.async.AsyncFactorySingleton;
+import io.zatarox.vertx.async.api.AsyncCollections;
+import io.zatarox.vertx.async.impl.AsyncResultHandlerWrapper;
 import io.zatarox.vertx.core.helpers.annotations.VerticleGroup;
 import java.util.Arrays;
 import java.util.List;
@@ -34,15 +35,17 @@ public final class AnnotationsHelper {
      * @param groups verticle groups to load
      * @param hndlr handler
      */
-    public static void deployVerticles(final Vertx instance, String[] groups, final Handler<AsyncResult<String>> hndlr) {
+    public static void deployVerticles(final Vertx instance, String[] groups, final Handler<AsyncResult<Void>> hndlr) {
         final List<String> theGroups = Arrays.asList(groups);
         final Reflections reflections = new Reflections();
-        Async.iterable(reflections.getTypesAnnotatedWith(VerticleGroup.class))
-        .each((item, eachHandler) -> {
-            if(theGroups.contains(item.getAnnotation(VerticleGroup.class).group()))
-            instance.deployVerticle(item.getName(), new AsyncResultHandlerWrapper(eachHandler));
-        })
-        .run(instance, new AsyncResultHandlerWrapper(hndlr));
+        final AsyncCollections async = AsyncFactorySingleton.getInstance().createCollections(instance.getOrCreateContext());
+        async.each(reflections.getTypesAnnotatedWith(VerticleGroup.class), (item, eachHandler) -> {
+            if (theGroups.contains(item.getAnnotation(VerticleGroup.class).group())) {
+                instance.deployVerticle(item.getName(), new AsyncResultHandlerWrapper(eachHandler));
+            }
+        }, handler -> {
+            hndlr.handle(handler);
+        });
     }
 
 }
