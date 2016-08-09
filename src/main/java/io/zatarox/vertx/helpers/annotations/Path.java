@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.zatarox.vertx.core.helpers.annotations;
+package io.zatarox.vertx.helpers.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(value = RetentionPolicy.RUNTIME)
-public @interface VerticleGroup {
-    
-    String group() default "";
+public @interface Path {
+
+    public static enum Method {
+        GET, POST, PUT, DELETE
+    }
+
+    String path();
+
+    Method method();
 
 }

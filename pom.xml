@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.zatarox</groupId>
-    <artifactId>vertx-core-helper</artifactId>
+    <artifactId>vertx-helpers</artifactId>
     <version>1.0.0</version>
 
     <name>Vert.X Core Helpers</name>
@@ -23,8 +23,8 @@
     <dependencies>
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-core</artifactId>
-            <version>3.2.1</version>
+            <artifactId>vertx-web</artifactId>
+            <version>3.3.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

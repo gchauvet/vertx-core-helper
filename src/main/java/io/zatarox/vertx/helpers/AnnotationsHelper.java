@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.zatarox.vertx.core.helpers;
+package io.zatarox.vertx.helpers;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
@@ -21,7 +21,7 @@ import io.vertx.core.Vertx;
 import io.zatarox.vertx.async.AsyncFactorySingleton;
 import io.zatarox.vertx.async.api.AsyncCollections;
 import io.zatarox.vertx.async.impl.AsyncResultHandlerWrapper;
-import io.zatarox.vertx.core.helpers.annotations.VerticleGroup;
+import io.zatarox.vertx.helpers.annotations.VerticleGroup;
 import java.util.Arrays;
 import java.util.List;
 import org.reflections.Reflections;
